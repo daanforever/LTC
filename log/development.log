@@ -1,0 +1,26 @@
+
+
+Processing Rails::InfoController#properties (for 85.21.106.195 at 2011-04-04 09:21:08) [GET]
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+Completed in 38ms (View: 3, DB: 1) | 200 OK [http://develop.dan.corbina.net/rails/info/properties]
+
+
+Processing Rails::InfoController#properties (for 85.21.106.195 at 2011-04-04 10:22:32) [GET]
+  [4;36;1mSQL (0.9ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+Completed in 34ms (View: 3, DB: 1) | 200 OK [http://develop.dan.corbina.net/rails/info/properties]
+
+
+Processing HomeController#index (for 85.21.106.195 at 2011-04-04 10:22:37) [GET]
+Rendering home/index
+Completed in 21ms (View: 19, DB: 0) | 200 OK [http://develop.dan.corbina.net/home/index]
+
+
+Processing HomeController#index (for 85.21.106.195 at 2011-04-04 10:25:26) [GET]
+Rendering home/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://develop.dan.corbina.net/]
