@@ -1,5 +1,16 @@
 <%= render "shared/header" %>
-
-        <p>Hello world!</p>
-
+        <div id="tabs" class="fullpage">
+            <ul>
+                <li><a href="#tabs-1">Status</a></li>
+                <li><a href="#tabs-2">Problems</a></li>
+                <li><a href="#tabs-3">Future</a></li>
+            </ul>
+            <div id="tabs-1">
+                <div class="ui-widget-content ui-corner-all">
+                    Internal div
+                </div>
+            </div>
+            <div id="tabs-2"></div>
+            <div id="tabs-3"></div>
+        </div>
 <%= render "shared/footer" %>
