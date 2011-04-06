@@ -1,35 +1,39 @@
 <%= render "shared/header" %>
-        <div id="tabs" class="fullpage">
-            <ul>
-                <li><a href="#tabs-1">Status</a></li>
-                <li><a href="#tabs-2">Problems</a></li>
-                <li><a href="#tabs-3">Colors</a></li>
+
+<script type="text/javascript">
+    $(function() {
+        $('#mega-menu').menu();
+    })
+</script>
+
+<article>
+    <section>
+        <p>Example category</p>
+        <div id="categorymenu">
+            <ul id="mega-menu">
+                <li><a href="#">Option1</a></li>
+                <li><a href="#">Option2</a></li>
+                <li><a href="#">Option3</a></li>
+                <li>
+                    <a href="#">Option4</a>
+                    <ul>
+                        <li><a href="#">Option41</a></li>
+                        <li><a href="#">Option42</a></li>
+                    </ul>
+                </li>
             </ul>
-            <div id="tabs-1">
-            </div>
-            <div id="tabs-2"></div>
-            <div id="tabs-3">
-                <div class="rounded left" style="display: block; ">
-                    <div class="cb1 ct1 content">Internal div</div>
-                    <div class="cb2 ct1 content">Internal div</div>
-                    <div class="cb3 ct1 content">Internal div</div>
-                    <div class="cb4 ct1 content">Internal div</div>
-                    <div class="cb5 ct1 content">Internal div</div>
-                </div>
-                <div class="rounded left" style="display: block; ">
-                    <div class="cb1 ct5 content">Internal div</div>
-                    <div class="cb2 ct5 content">Internal div</div>
-                    <div class="cb3 ct5 content">Internal div</div>
-                    <div class="cb4 ct5 content">Internal div</div>
-                    <div class="cb5 ct5 content">Internal div</div>
-                </div>
-                <div class="rounded left" style="display: block; ">
-                    <div class="cb1 ct5 content">Internal div</div>
-                    <div class="cb2 ct5 content">Internal div</div>
-                    <div class="cb3 ct5 content">Internal div</div>
-                    <div class="cb4 ct1 content">Internal div</div>
-                    <div class="cb5 ct1 content">Internal div</div>
-                </div>
-            </div>
         </div>
+    </section>
+    <section>
+        Category entries
+    </section>
+</article>
+
+                <div class="rounded left" style="display: block; ">
+                    <div class="cb1 ct5 content">div cb1 ct5</div>
+                    <div class="cb2 ct5 content">div cb2 ct5</div>
+                    <div class="cb3 ct5 content">div cb3 ct5</div>
+                    <div class="cb4 ct1 content">div cb4 ct1</div>
+                    <div class="cb5 ct1 content">div cb5 ct1</div>
+                </div>
 <%= render "shared/footer" %>
