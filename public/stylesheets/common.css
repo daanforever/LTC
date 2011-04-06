@@ -1,2 +1,17 @@
 footer      { text-align: center; }
 .fullpage   { min-height: 30em; min-width: 60em; }
+
+.content    { padding: 1em; }
+
+.cb1        { background-color: #FFFFCC; }
+.cb2        { background-color: #FFCC66; }
+.cb3        { background-color: #FF9900; }
+.cb4        { background-color: #996633; }
+.cb5        { background-color: #663300; }
+
+.ct1        { color: #FFFFCC; }
+.ct2        { color: #FFCC66; }
+.ct3        { color: #FF9900; }
+.ct4        { color: #996633; }
+.ct5        { color: #663300; }
+
