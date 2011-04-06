@@ -28,7 +28,7 @@
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border:1px solid #ccc;
-	
+	behavior: url(PIE.htc);
 }
 
 .rounded_top_right {

@@ -1,5 +1,5 @@
 footer      { text-align: center; }
-.fullpage   { min-height: 30em; min-width: 60em; }
+.fullpage   { min-height: 30em; width: 60em; margin: auto; }
 
 .content    { padding: 1em; }
 
