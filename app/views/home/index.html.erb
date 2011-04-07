@@ -8,62 +8,37 @@
     })
 </script>
     <div class="raw">
+    <% @categories.each do |category| %>
         <section class="category">
             <header>
             <div class="menu">
-                <ul id="menu1" class="sf-menu">
+                <ul id="menu<%= category.id() %>" class="sf-menu">
                     <li>
                         <a>Options</a>
                         <ul>
-                            <li><a href="#">Add category</a></li>
-                            <li><a href="#">Remove category</a></li>
-                            <li><a href="#">Add server</a></li>
-                            <li><a href="#">Remove server</a></li>
+                            <li>
+                                <a>Categories</a>
+                                <ul>
+                                    <li><%= link_to 'Add', new_category_path %></li>
+                                    <li><%= link_to 'Edit', edit_category_path(category) %></li>
+                                    <li><%= link_to 'Remove', category, :confirm => 'Are you sure?', :method => :delete %></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a>Servers</a>
+                                <ul>
+                                    <li><a href="#">Add server</a></li>
+                                    <li><a href="#">Remove server</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <h2>Example category</h2>
+            <h2><%=h category.name %> <%=h category.description %></h2>
             </header>
             <section>Some category entry</section>
         </section>
-
-        <section class="category">
-            <header>
-            <div class="menu">
-                <ul id="menu2" class="sf-menu">
-                    <li>
-                        <a>Options</a>
-                        <ul>
-                            <li><a href="#">Add category</a></li>
-                            <li><a href="#">Remove category</a></li>
-                            <li><a href="#">Add server</a></li>
-                            <li><a href="#">Remove server</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <h2>Another category</h2>
-            </header>
-        </section>
-
-        <section class="category">
-            <header>
-            <div class="menu">
-                <ul id="menu3" class="sf-menu">
-                    <li>
-                        <a>Options</a>
-                        <ul>
-                            <li><a href="#">Add category</a></li>
-                            <li><a href="#">Remove category</a></li>
-                            <li><a href="#">Add server</a></li>
-                            <li><a href="#">Remove server</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <h2>Yet another category</h2>
-            </header>
-        </section>
+    <% end %>
     </div>
 <%= render "shared/footer" %>
