@@ -2,31 +2,68 @@
 
 <script type="text/javascript">
     $(function() {
-        $('#menu').superfish();
+        $('#menu1').superfish();
+        $('#menu2').superfish();
+        $('#menu3').superfish();
     })
 </script>
+    <div class="raw">
+        <section class="category">
+            <header>
+            <div class="menu">
+                <ul id="menu1" class="sf-menu">
+                    <li>
+                        <a>Options</a>
+                        <ul>
+                            <li><a href="#">Add category</a></li>
+                            <li><a href="#">Remove category</a></li>
+                            <li><a href="#">Add server</a></li>
+                            <li><a href="#">Remove server</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <h2>Example category</h2>
+            </header>
+            <section>Some category entry</section>
+        </section>
 
-<div class="row">
-        <p>Example category</p>
-        <div class="right" style="display: block">
-            <ul id="menu" class="sf-menu">
-                <li>
-                    <a>Options</a>
-                    <ul>
-                        <li><a href="#">Option41</a></li>
-                        <li><a href="#">Option42</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <section class="category">
+            <header>
+            <div class="menu">
+                <ul id="menu2" class="sf-menu">
+                    <li>
+                        <a>Options</a>
+                        <ul>
+                            <li><a href="#">Add category</a></li>
+                            <li><a href="#">Remove category</a></li>
+                            <li><a href="#">Add server</a></li>
+                            <li><a href="#">Remove server</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <h2>Another category</h2>
+            </header>
+        </section>
 
-        <div>
-            <div class="cb1 ct5 content">div cb1 ct5</div>
-            <div class="cb2 ct5 content">div cb2 ct5</div>
-            <div class="cb3 ct5 content">div cb3 ct5</div>
-            <div class="cb4 ct1 content">div cb4 ct1</div>
-            <div class="cb5 ct1 content">div cb5 ct1</div>
-        </div>
-
-</div>
+        <section class="category">
+            <header>
+            <div class="menu">
+                <ul id="menu3" class="sf-menu">
+                    <li>
+                        <a>Options</a>
+                        <ul>
+                            <li><a href="#">Add category</a></li>
+                            <li><a href="#">Remove category</a></li>
+                            <li><a href="#">Add server</a></li>
+                            <li><a href="#">Remove server</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <h2>Yet another category</h2>
+            </header>
+        </section>
+    </div>
 <%= render "shared/footer" %>

@@ -53,16 +53,16 @@ ul.sf-menu li li li.sfHover ul {
 }
 
 /*** DEMO SKIN ***/
-.sf-menu {
+/* .sf-menu {
 	float:			left;
 	margin-bottom:	1em;
-}
+} */
 .sf-menu a {
 	border-top:	1px solid #FFFFCC;
 	border-left:	1px solid #FFFFCC;
 	padding: 		.75em 1em;
 	text-decoration:none;
-}
+} 
 .sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
 	color:			#663300;
 }
