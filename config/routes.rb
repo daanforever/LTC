@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :categories
+  map.resources :servers
+
+  map.resources :categories, :has_many => :servers
 
   # The priority is based upon order of creation: first created -> highest priority.
 

@@ -1,0 +1,24 @@
+<h1>Listing servers</h1>
+
+<%= debug(@servers) %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+  </tr>
+
+<% @servers.each do |server| %>
+  <tr>
+    <td><%=h server.name %></td>
+    <td><%=h server.category %></td>
+    <td><%= link_to 'Show', server %></td>
+    <td><%= link_to 'Edit', edit_server_path(server) %></td>
+    <td><%= link_to 'Destroy', server, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New server', new_server_path %>
