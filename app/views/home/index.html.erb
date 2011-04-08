@@ -14,19 +14,16 @@
             <header>
             <div class="menu">
                 <ul id="menu<%= category.id() %>" class="sf-menu">
-                    <li>
-                        <a>Options</a>
+                    <li><a>Options</a>
                         <ul>
-                            <li>
-                                <a>Categories</a>
+                            <li><a>Categories</a>
                                 <ul>
                                     <li><%= link_to 'Add', new_category_path %></li>
                                     <li><%= link_to 'Edit', edit_category_path(category) %></li>
                                     <li><%= link_to 'Remove', category, :confirm => 'Are you sure?', :method => :delete %></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a>Servers</a>
+                            <li><a>Servers</a>
                                 <ul>
                                     <li><%= link_to 'Add server', new_category_server_path(category) %></li>
                                     <li><a href="#">Remove server</a></li>
@@ -38,7 +35,11 @@
             </div>
             <h2><%=h category.name %> <%=h category.description %></h2>
             </header>
-            <section>Some category entry</section>
+            <section>
+            <% @servers.each do |server| %>
+                <%= server.name if server.category_id == category.id  %>
+            <% end %>
+            </section>
         </section>
     <% end %>
     </div>
