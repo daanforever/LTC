@@ -11,14 +11,13 @@
 .ct4        { color: #996633; }
 .ct5        { color: #663300; }
 
+header      { margin: 2em auto; width: 60em }
 footer      { text-align: center; }
 
-.category   { min-height: 20em; width: 60em; margin: auto; }
-.category header {
-              border-bottom: 1px dotted;
-}
-.category header {
+.raw                { min-height: 20em; width: 60em; margin: auto; }
+.category           { min-height: 20em; width: 60em; margin: auto; }
+.category header    { padding: 0.1em; border-bottom: 1px dotted }
+.category article   { margin: 2em; border: 1px solid; width: 10em; float: left; text-align: center }
+.category article p { margin: 2em }
 
-}
-
-div .menu   { float: right; display: block; }
+div .menu           { float: right; display: block; }

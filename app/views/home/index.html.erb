@@ -7,7 +7,12 @@
         $('#menu3').superfish();
     })
 </script>
+    <header>
+        <h2>LTC - Status</h2>
+    </header>
+
     <div class="raw">
+
     <% @categories.each do |category| %>
 
         <section class="category">
@@ -33,11 +38,13 @@
                     </li>
                 </ul>
             </div>
-            <h2><%=h category.name %> <%=h category.description %></h2>
+            <h3><%=h category.name %> <%=h category.description %></h3>
             </header>
             <section>
             <% @servers.each do |server| %>
-                <%= server.name if server.category_id == category.id  %>
+            <% if server.category_id == category.id %>
+                <article class="rounded"><p><%= server.name %></p></article>
+            <% end %>
             <% end %>
             </section>
         </section>
