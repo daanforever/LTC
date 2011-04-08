@@ -2,7 +2,7 @@ class CreateServers < ActiveRecord::Migration
   def self.up
     create_table :servers do |t|
       t.string :name
-      t.reference :category
+      t.references :category
 
       t.timestamps
     end

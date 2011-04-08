@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20110407230632) do
 
   create_table "servers", :force => true do |t|
     t.string   "name"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

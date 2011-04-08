@@ -9,6 +9,7 @@
 </script>
     <div class="raw">
     <% @categories.each do |category| %>
+
         <section class="category">
             <header>
             <div class="menu">
@@ -27,7 +28,7 @@
                             <li>
                                 <a>Servers</a>
                                 <ul>
-                                    <li><a href="#">Add server</a></li>
+                                    <li><%= link_to 'Add server', new_category_server_path(category) %></li>
                                     <li><a href="#">Remove server</a></li>
                                 </ul>
                             </li>

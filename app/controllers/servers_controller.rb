@@ -4,7 +4,6 @@ class ServersController < ApplicationController
   def index
     @servers = Server.all
     #@category = Category.find(params[:category_id])
-    logger.debug{@servers.inspect}
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,11 +28,7 @@ class ServersController < ApplicationController
     #@server = Server.new
     @category = Category.find(params[:category_id])
     @server = @category.servers.build
-    @server[:category_name] = @category.name;
 
-    logger.debug{@category.inspect}
-    logger.debug{@server.inspect}
-    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @server }
