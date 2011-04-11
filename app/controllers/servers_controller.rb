@@ -87,4 +87,14 @@ class ServersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def status
+    @server = Server.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.xml  { render :xml => @server }
+    end
+  end
+
 end

@@ -41,11 +41,15 @@
             <h3><%=h category.name %> <%=h category.description %></h3>
             </header>
             <section>
-            <% @servers.each do |server| %>
-            <% if server.category_id == category.id %>
-                <article class="rounded"><p><%= server.name %></p></article>
-            <% end %>
-            <% end %>
+            <% @servers.each do |server| 
+               if server.category_id == category.id %>
+                <article class="rounded">
+                <p><%= link_to_remote server.name, :update => server.id , :url => {:controller => "servers", :action => "status", :id => server.id} %></p>
+                <div id="<%= server.id %>">
+                </div>
+                </article>
+            <% end 
+               end %>
             </section>
         </section>
     <% end %>
