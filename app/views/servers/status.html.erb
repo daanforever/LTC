@@ -1,13 +1,5 @@
 <p>
-  <b>Name:</b>
-  <%=h @server.name %>
+  <p><%=h @server.name %></p>
+  <p><%=h @status %></p>
 </p>
 
-<p>
-  <b>Category:</b>
-  <%=h @server.category %>
-</p>
-
-
-<%= link_to 'Edit', edit_server_path(@server) %> |
-<%= link_to 'Back', servers_path %>

@@ -89,7 +89,12 @@ class ServersController < ApplicationController
   end
 
   def status
+    require 'nokogiri'
+    require 'open-uri'
+
     @server = Server.find(params[:id])
+    doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
+    @status = doc.css('dt').last.text
 
     respond_to do |format|
       format.html { render :layout => false }

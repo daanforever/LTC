@@ -44,7 +44,7 @@
             <% @servers.each do |server| 
                if server.category_id == category.id %>
                 <article class="rounded">
-                <p><%= link_to_remote server.name, :update => server.id , :url => {:controller => "servers", :action => "status", :id => server.id} %></p>
+                <%= periodically_call_remote :update => server.id, :url => {:controller => "servers", :action => "status", :id => server.id}, :frequency => 1.0 %>
                 <div id="<%= server.id %>">
                 </div>
                 </article>

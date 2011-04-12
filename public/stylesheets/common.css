@@ -19,7 +19,7 @@ body        { color: #663300 }
 .raw                { min-height: 20em; width: 60em; margin: auto; }
 .category           { min-height: 20em; width: 60em; margin: auto; }
 .category header    { padding: 0.1em; margin: ; border-bottom: 1px dotted }
-.category article   { margin: 1em; border: 0px solid #996633; width: 10em; float: left; text-align: center }
+.category article   { margin: 1em; border: 0px solid #996633; width: 10em; float: left; text-align: center; color: #221100; }
 .category article p { margin: 1em }
 
 div .menu           { float: right }
