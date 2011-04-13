@@ -94,7 +94,8 @@ class ServersController < ApplicationController
 
     @server = Server.find(params[:id])
     doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
-    @status = doc.css('dt').last.text.split(/\D+/).join("/")
+    # @status = doc.css('dt').last.text.split(/\D+/).join("/")
+    @status = doc.css('dt').last.text.split(/\D+/)
 
     respond_to do |format|
       format.html { render :layout => false }
