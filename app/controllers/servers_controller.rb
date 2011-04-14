@@ -92,14 +92,20 @@ class ServersController < ApplicationController
     require 'nokogiri'
     require 'open-uri'
 
+    @error = 0
+    @status = Hash.new
     @server = Server.find(params[:id])
+
     begin
         doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
-        @status = doc.css('dt').last.text.split(/\D+/)
-        @error = 0
-    rescue Exception => exc
-        @error = 1
-        flash[:notice] = exc.message
+        @status["apache"] = doc.css('dt').last.text.split(/\D+/)
+    rescue 
+        begin
+            @status["nginx"] = open("http://#{@server.name}/status"){|f| f.read.split(/\D+/)}[-3,3]
+        rescue Exception => exc
+            @error = 1
+            flash[:notice] = exc.message
+        end
     end
 
     respond_to do |format|

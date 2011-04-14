@@ -2,8 +2,10 @@
   <p><%=h @server.name %></p>
   <% if @error != 0 %>
   <p><%= flash[:notice] %></p>
+  <% elsif @status["apache"] %>
+  <p><strong class="big"><%=h @status["apache"][0] %></strong>/<%=h @status["apache"][1] %></p>
   <% else %>
-  <p><strong class="big"><%=h @status[0] %></strong>/<%=h @status[1] %></p>
+  <p><strong class="big"><%=h @status["nginx"][0] %>/<%= @status["nginx"][1] %></strong>/<%=h @status["nginx"][2] %></p>
   <% end %>
 </p>
 
