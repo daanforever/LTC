@@ -23,3 +23,5 @@ body        { color: #663300 }
 .category article p { margin: 1em }
 
 div .menu           { float: right }
+
+strong.big  { font-size: 2em; }

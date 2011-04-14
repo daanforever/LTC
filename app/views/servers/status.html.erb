@@ -1,5 +1,9 @@
 <p>
   <p><%=h @server.name %></p>
-  <p><b><%=h @status[0] %></b>/<%=h @status[1] %></p>
+  <% if @error != 0 %>
+  <p><%= flash[:notice] %></p>
+  <% else %>
+  <p><strong class="big"><%=h @status[0] %></strong>/<%=h @status[1] %></p>
+  <% end %>
 </p>
 

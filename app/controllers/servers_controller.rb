@@ -93,9 +93,14 @@ class ServersController < ApplicationController
     require 'open-uri'
 
     @server = Server.find(params[:id])
-    doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
-    # @status = doc.css('dt').last.text.split(/\D+/).join("/")
-    @status = doc.css('dt').last.text.split(/\D+/)
+    begin
+        doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
+        @status = doc.css('dt').last.text.split(/\D+/)
+        @error = 0
+    rescue Exception => exc
+        @error = 1
+        flash[:notice] = exc.message
+    end
 
     respond_to do |format|
       format.html { render :layout => false }
