@@ -97,11 +97,21 @@ class ServersController < ApplicationController
     @server = Server.find(params[:id])
 
     begin
-        doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
-        @status["apache"] = doc.css('dt').last.text.split(/\D+/)
+        timeout(2) do
+            doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
+            @status["apache"] = doc.css('dt').last.text.split(/\D+/)
+        end
+    rescue Timeout::Error
+            @error = 1
+            flash[:notice] = 'Timeout::Error'
     rescue 
         begin
-            @status["nginx"] = open("http://#{@server.name}/status"){|f| f.read.split(/\D+/)}[-3,3]
+            timeout(2) do
+                @status["nginx"] = open("http://#{@server.name}/status"){|f| f.read.split(/\D+/)}[-3,3]
+            end
+        rescue Timeout::Error
+            @error = 1
+            flash[:notice] = 'Timeout::Error'
         rescue Exception => exc
             @error = 1
             flash[:notice] = exc.message

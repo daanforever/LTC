@@ -43,7 +43,7 @@
             <section>
             <% @servers.each do |server| 
                if server.category_id == category.id %>
-                <article class="rounded">
+                <article>
                 <%= periodically_call_remote :update => server.id, :url => {:controller => "servers", :action => "status", :id => server.id}, :frequency => 5.0 %>
                 <div id="<%= server.id %>">
                     <p>Waiting for data</p>
