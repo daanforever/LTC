@@ -1,5 +1,7 @@
 <h1>Editing server</h1>
 
+<%= debug(@server) %>
+
 <% form_for(@server) do |f| %>
   <%= f.error_messages %>
 
@@ -8,8 +10,12 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :category %><br />
-    <%= f.text_field :category %>
+    <%= f.label :server_ip %><br />
+    <%= f.text_field :server_ip %>
+  </p>
+  <p>
+    <%= f.label :category_id %><br />
+    <%= f.text_field :category_id %>
   </p>
   <p>
     <%= f.submit 'Update' %>

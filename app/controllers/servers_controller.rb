@@ -96,11 +96,13 @@ class ServersController < ApplicationController
     @status = Hash.new
     @server = Server.find(params[:id])
 
+    # TODO: make flash clean via filter
+    flash[:notice] = ''
+
     begin
         timeout(2) do
             doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
             @status["apache"] = doc.css('dt').last.text.split(/\D+/)
-            flash[:notice] = ''
         end
     rescue Timeout::Error
             @error = 1
@@ -109,7 +111,6 @@ class ServersController < ApplicationController
         begin
             timeout(2) do
                 @status["nginx"] = open("http://#{@server.name}/status"){|f| f.read.split(/\D+/)}[-3,3]
-                flash[:notice] = ''
             end
         rescue Timeout::Error
             @error = 1
