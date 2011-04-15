@@ -8,6 +8,20 @@
   <%=h @category.description %>
 </p>
 
+<p>
+  <b>Servers:</b><br />
+<% @servers = Server.all
+   @servers.each do |server|
+     if server.category_id == @category.id %>
+    <%=h server.name %>
+<!--    <%=h server.category %> -->
+    <%= link_to 'Show', server %>
+    <%= link_to 'Edit', edit_server_path(server) %>
+    <%= link_to 'Destroy', server, :confirm => 'Are you sure?', :method => :delete %>
+    <br />
+<% end
+   end %>
+</p>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
