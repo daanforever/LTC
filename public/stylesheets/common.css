@@ -16,7 +16,7 @@ footer      { text-align: center; }
 
 body        { color: #663300 }
 
-.raw                { min-height: 20em; width: 60em; margin: 10em auto; }
+.raw                { min-height: 20em; width: 60em; margin: 3em auto; }
 .category           { }
 .category header    { padding: 0.1em; border-bottom: 1px dotted }
 .category section   { width: 60em; }
