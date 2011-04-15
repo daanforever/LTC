@@ -100,6 +100,7 @@ class ServersController < ApplicationController
         timeout(2) do
             doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
             @status["apache"] = doc.css('dt').last.text.split(/\D+/)
+            flash[:notice] = ''
         end
     rescue Timeout::Error
             @error = 1
@@ -108,6 +109,7 @@ class ServersController < ApplicationController
         begin
             timeout(2) do
                 @status["nginx"] = open("http://#{@server.name}/status"){|f| f.read.split(/\D+/)}[-3,3]
+                flash[:notice] = ''
             end
         rescue Timeout::Error
             @error = 1
