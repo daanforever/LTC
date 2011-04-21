@@ -36,9 +36,11 @@
                if server.category_id == category.id %>
                 <article>
                 <%= periodically_call_remote :update => server.id, :url => {:controller => "servers", :action => "status", :id => server.id}, :frequency => 5.0 %>
+                <a href="#">
                 <div id="<%= server.id %>">
                     <p>Waiting for data</p>
                 </div>
+                </a>
                 </article>
             <% end 
                end %>

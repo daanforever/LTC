@@ -89,41 +89,78 @@ class ServersController < ApplicationController
   end
 
   def status
-    require 'nokogiri'
     require 'open-uri'
 
-    @error = 0
+    @error = 1
     @status = Hash.new
     @server = Server.find(params[:id])
-
-    # TODO: make flash clean via filter
     flash[:notice] = ''
 
-    begin
-        timeout(2) do
-            doc = Nokogiri::HTML(open("http://#{@server.name}/server-status"))
-            @status["apache"] = doc.css('dt').last.text.split(/\D+/)
-        end
-    rescue Timeout::Error
-            @error = 1
-            flash[:notice] = 'Timeout::Error'
-    rescue 
-        begin
-            timeout(2) do
-                @status["nginx"] = open("http://#{@server.name}/status"){|f| f.read.split(/\D+/)}[-3,3]
-            end
-        rescue Timeout::Error
-            @error = 1
-            flash[:notice] = 'Timeout::Error'
-        rescue Exception => exc
-            @error = 1
-            flash[:notice] = exc.message
-        end
-    end
+    try_server_status
+    try_status
+    try_nginx_status
 
     respond_to do |format|
       format.html { render :layout => false }
       format.xml  { render :xml => @server }
+    end
+  end
+
+  def try_server_status
+    begin
+        timeout(2) do
+            require 'nokogiri'
+            @error = 0
+            flash[:notice] = ''
+            doc = Nokogiri::HTML(open("http://#{@server.address}/server-status/"))
+            begin
+                @status["apache"] = doc.css('dt').last.text.split(/\D+/)
+            rescue
+                @status["apache"] = doc.xpath("//text()")[12].text.strip.split(/\D+/)
+            end
+        end
+    rescue Timeout::Error
+        @error = 1
+        flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/server-status/: </b>Timeout::Error<br/>"
+    rescue Exception => exc
+        @error = 1
+        flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/server-status/: </b>" + exc.message + "<br/>"
+    end
+  end
+
+  def try_status
+    if @status.empty?
+    begin
+        timeout(2) do
+            @status["nginx"] = open("http://#{@server.address}/status/"){|f| f.read.split(/\D+/)}[-3,3]
+            @error = 0
+            flash[:notice] = ''
+        end
+    rescue Timeout::Error
+        @error = 1
+        flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/status/: </b>Timeout::Error<br/>"
+    rescue Exception => exc
+        @error = 1
+        flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/status/: </b>" + exc.message + "<br/>"
+    end
+    end
+  end
+
+  def try_nginx_status
+    if @status.empty?
+    begin
+        timeout(2) do
+            @status["nginx"] = open("http://#{@server.address}/nginx_status/"){|f| f.read.split(/\D+/)}[-3,3]
+            @error = 0
+            flash[:notice] = ''
+        end
+    rescue Timeout::Error
+        @error = 1
+        flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/nginx_status/: </b>Timeout::Error<br/>"
+    rescue Exception => exc
+        @error = 1
+        flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/nginx_status/: </b>" + exc.message + "<br/>"
+    end
     end
   end
 

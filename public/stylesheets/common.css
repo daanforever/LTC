@@ -25,4 +25,7 @@ body        { color: #663300 }
 
 div .menu           { float: right }
 
+a:link      { text-decoration: none; }
+a:hover     { text-decoration: underline; }
+
 strong.big  { font-size: 2em; }
