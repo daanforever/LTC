@@ -88,6 +88,7 @@ var Facebox = Class.create({
 	watchClickEvents	: function(e){
 		var f = this;
 		$$('a[rel=facebox]').each(function(elem,i){
+            Event.stopObserving(elem, 'click');
 			Event.observe(elem, 'click', function(e){
 				Event.stop(e);
 				f.click_handler(elem, e);
@@ -127,13 +128,14 @@ var Facebox = Class.create({
      elem.show();
     });
     		
-		if(!this.facebox.visible()) new Effect.Appear(this.facebox, {duration: .3});
+		if(!this.facebox.visible()) new Effect.Appear(this.facebox, {duration: 5.3});
 		this.facebox.setStyle({
 			'left': document.viewport.getWidth() / 2 - (this.facebox.getWidth() / 2) + 'px'
 		});
 		
     Event.observe(document, 'keypress', this.keyPressListener);
     Event.observe(document, 'click', this.keyPressListener);
+	this.watchClickEvents();
 	},
 	
 	close		: function(){

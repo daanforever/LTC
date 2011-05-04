@@ -14,7 +14,7 @@
                         <ul>
                             <li><a>Categories</a>
                                 <ul>
-                                    <li><%= link_to 'Add', new_category_path %></li>
+                                    <li><%= link_to 'Add', new_category_path, :rel => 'facebox' %></li>
                                     <li><%= link_to 'Edit', edit_category_path(category) %></li>
                                     <li><%= link_to 'Remove', category, :confirm => 'Are you sure?', :method => :delete %></li>
                                 </ul>
@@ -38,7 +38,6 @@
                 <%= periodically_call_remote :update => server.id, :url => {:controller => "servers", :action => "status", :id => server.id}, :frequency => 5.0 %>
                 <a href="<%= server_path(server) %>" rel="facebox">
                 <div id="<%= server.id %>">
-                    <p>Waiting for data</p>
                 </div>
                 </a>
                 </article>

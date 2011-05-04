@@ -16,9 +16,13 @@ class ServersController < ApplicationController
   def show
     @server = Server.find(params[:id])
 
+    if (request.xhr?)
+        render :layout => false   
+    else
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @server }
+    end
     end
   end
 
