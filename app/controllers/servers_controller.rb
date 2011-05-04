@@ -1,13 +1,14 @@
 class ServersController < ApplicationController
+
   # GET /servers
   # GET /servers.xml
   def index
     @servers = Server.all
     #@category = Category.find(params[:category_id])
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @servers }
+        format.html # show.html.erb
+        format.js   { render :layout => false }
+        format.xml  { render :xml => @server }
     end
   end
 
@@ -15,33 +16,33 @@ class ServersController < ApplicationController
   # GET /servers/1.xml
   def show
     @server = Server.find(params[:id])
-
-    if (request.xhr?)
-        render :layout => false   
-    else
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @server }
-    end
+        format.html # show.html.erb
+        format.js   { render :layout => false }
+        format.xml  { render :xml => @server }
     end
   end
 
   # GET /servers/new
   # GET /servers/new.xml
   def new
-    #@server = Server.new
     @category = Category.find(params[:category_id])
     @server = @category.servers.build
-
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @server }
+        format.html # show.html.erb
+        format.js   { render :layout => false }
+        format.xml  { render :xml => @server }
     end
   end
 
   # GET /servers/1/edit
   def edit
     @server = Server.find(params[:id])
+    respond_to do |format|
+        format.html # show.html.erb
+        format.js   { render :layout => false }
+        format.xml  { render :xml => @server }
+    end
   end
 
   # POST /servers
@@ -105,8 +106,9 @@ class ServersController < ApplicationController
     try_nginx_status
 
     respond_to do |format|
-      format.html { render :layout => false }
-      format.xml  { render :xml => @server }
+        format.html # show.html.erb
+        format.js   { render :layout => false }
+        format.xml  { render :xml => @server }
     end
   end
 
@@ -166,6 +168,11 @@ class ServersController < ApplicationController
         flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/nginx_status/: </b>" + exc.message + "<br/>"
     end
     end
+  end
+
+  private
+  def respond
+
   end
 
 end

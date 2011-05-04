@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js   { render :layout => false }
       format.xml  { render :xml => @categories }
     end
   end
@@ -17,6 +18,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.js   { render :layout => false }
       format.xml  { render :xml => @category }
     end
   end
@@ -28,6 +30,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.js   { render :layout => false }
       format.xml  { render :xml => @category }
     end
   end
@@ -46,9 +49,11 @@ class CategoriesController < ApplicationController
       if @category.save
         flash[:notice] = 'Category was successfully created.'
         format.html { redirect_to(@category) }
+        format.js   { render :layout => false }
         format.xml  { render :xml => @category, :status => :created, :location => @category }
       else
         format.html { render :action => "new" }
+        format.js   { render :layout => false }
         format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,9 +68,11 @@ class CategoriesController < ApplicationController
       if @category.update_attributes(params[:category])
         flash[:notice] = 'Category was successfully updated.'
         format.html { redirect_to(@category) }
+        format.js   { render :layout => false }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
+        format.js   { render :layout => false }
         format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
       end
     end
@@ -79,6 +86,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(categories_url) }
+      format.js   { render :layout => false }
       format.xml  { head :ok }
     end
   end

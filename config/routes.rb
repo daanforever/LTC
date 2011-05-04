@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :settings_paths
+
   map.resources :servers
 
   map.resources :categories, :has_many => :servers
