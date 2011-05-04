@@ -15,14 +15,14 @@
                             <li><a>Categories</a>
                                 <ul>
                                     <li><%= link_to 'Add', new_category_path, :rel => 'facebox' %></li>
-                                    <li><%= link_to 'Edit', edit_category_path(category) %></li>
+                                    <li><%= link_to 'Edit', edit_category_path(category), :rel => 'facebox' %></li>
                                     <li><%= link_to 'Remove', category, :confirm => 'Are you sure?', :method => :delete %></li>
                                 </ul>
                             </li>
                             <li><a>Servers</a>
                                 <ul>
-                                    <li><%= link_to 'Add server', new_category_server_path(category) %></li>
-                                    <li><%= link_to 'Show servers', category_path(category) %></li>
+                                    <li><%= link_to 'Add server', new_category_server_path(category), :rel => 'facebox' %></li>
+                                    <li><%= link_to 'Show servers', category_path(category), :rel => 'facebox' %></li>
                                 </ul>
                             </li>
                         </ul>
