@@ -35,6 +35,16 @@ class ServersController < ApplicationController
     end
   end
 
+  def check
+    @category = Category.find(params[:category_id])
+    @server = @category.servers.build(params[:server])
+    respond_to do |format|
+        format.html # check.html.erb
+        format.js   { render :layout => false }
+        format.xml  { render :xml => @server }
+    end
+  end
+
   # GET /servers/1/edit
   def edit
     @server = Server.find(params[:id])
@@ -48,7 +58,6 @@ class ServersController < ApplicationController
   # POST /servers
   # POST /servers.xml
   def create
-    #@server = Server.new(params[:server])
     @category = Category.find(params[:category_id])
     @server = @category.servers.build(params[:server])
 
@@ -56,9 +65,11 @@ class ServersController < ApplicationController
       if @server.save
         flash[:notice] = 'Server was successfully created.'
         format.html { redirect_to(@server) }
+        format.js   { render :layout => false }
         format.xml  { render :xml => @server, :status => :created, :location => @server }
       else
         format.html { render :action => "new" }
+        format.js   { render :layout => false }
         format.xml  { render :xml => @server.errors, :status => :unprocessable_entity }
       end
     end
@@ -73,9 +84,11 @@ class ServersController < ApplicationController
       if @server.update_attributes(params[:server])
         flash[:notice] = 'Server was successfully updated.'
         format.html { redirect_to(@server) }
+        format.js   { render :layout => false }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
+        format.js   { render :layout => false }
         format.xml  { render :xml => @server.errors, :status => :unprocessable_entity }
       end
     end
