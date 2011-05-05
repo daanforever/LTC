@@ -18,6 +18,7 @@
     <%= f.text_field :address %>
   </p>
   <p>
+    <%= submit_to_remote 'check', 'Check', :url => { :controller => 'servers', :action => 'check' }, :success => 'alert("Hello!")' %>
     <%= f.submit 'Submit', :disabled => 'disabled' %>
   </p>
 <% end %>
