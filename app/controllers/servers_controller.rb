@@ -35,16 +35,6 @@ class ServersController < ApplicationController
     end
   end
 
-  def check
-    @category = Category.find(params[:category_id])
-    @server = @category.servers.build(params[:server])
-    respond_to do |format|
-        format.html # check.html.erb
-        format.js   { render :layout => false }
-        format.xml  { render :xml => @server }
-    end
-  end
-
   # GET /servers/1/edit
   def edit
     @server = Server.find(params[:id])
@@ -52,6 +42,20 @@ class ServersController < ApplicationController
         format.html # show.html.erb
         format.js   { render :layout => false }
         format.xml  { render :xml => @server }
+    end
+  end
+
+  def check
+    @category = Category.find(params[:id])
+    @server = @category.servers.build(params[:server])
+    @status = Hash.new
+    try_server_status
+    try_status
+    try_nginx_status
+    respond_to do |format|
+        format.html { render :layout => true  }
+        format.js   { render :layout => false }
+        format.xml  { render :xml => @server, :status => :created, :location => @server }
     end
   end
 
@@ -64,7 +68,7 @@ class ServersController < ApplicationController
     respond_to do |format|
       if @server.save
         flash[:notice] = 'Server was successfully created.'
-        format.html { redirect_to(@server) }
+        format.html { render :layout => true  }
         format.js   { render :layout => false }
         format.xml  { render :xml => @server, :status => :created, :location => @server }
       else
@@ -109,8 +113,8 @@ class ServersController < ApplicationController
   def status
     require 'open-uri'
 
-    @error = 1
     @status = Hash.new
+    @error = 1
     @server = Server.find(params[:id])
     flash[:notice] = ''
 
@@ -145,6 +149,7 @@ class ServersController < ApplicationController
         @error = 1
         flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/server-status/: </b>" + exc.message + "<br/>"
     end
+    return @error
   end
 
   def try_status
@@ -163,6 +168,7 @@ class ServersController < ApplicationController
         flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/status/: </b>" + exc.message + "<br/>"
     end
     end
+    return @error
   end
 
   def try_nginx_status
@@ -181,6 +187,7 @@ class ServersController < ApplicationController
         flash[:notice] = flash[:notice] + "<b>http://#{@server.address}/nginx_status/: </b>" + exc.message + "<br/>"
     end
     end
+    return @error
   end
 
   private

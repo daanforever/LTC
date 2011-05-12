@@ -1,10 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :settings_paths
 
-  #map.connect 'servers/check.:format', :controller => 'servers', :action => 'check', :conditions => { :method => :get }
-  #map.connect ':controller/check.:format', :action => 'check'
-
-  map.resources :servers, :collection => { :check => [:get, :post] }
+  map.resources :servers, :member => { :check => [:get, :post] }
   map.resources :categories, :has_many => :servers
   map.resources :home
 

@@ -1,2 +1,33 @@
-<h1>Servers#check</h1>
-<p>Find me in app/views/servers/check.html.erb</p>
+<div id="page">
+<h1>New server</h1>
+<p>Category: <%= @category.name %></p>
+
+<% form_for([@category, @server]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <% if @status.empty? %>
+  <p>Unknown server</p>
+  <% elsif @status["apache"] %>
+  <p>Server: apache</p>
+  <% elsif @status["nginx"] %>
+  <p>Server: nginx</p>
+  <% end %>
+  <p>
+    <%= submit_to_remote 'submit', 'Submit', :url => category_servers_path(@category), :update => 'page' %>
+  </p>
+<% end %>
+
+<%= link_to_remote 'Back', new_category_server_path(@category), :update => 'page' %>
+</div>
